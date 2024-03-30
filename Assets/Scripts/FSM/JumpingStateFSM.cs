@@ -11,6 +11,8 @@ public class JumpingStateFSM : StateFSM
     private bool grounded;
 
     private Vector3 airVelocity;
+    private static readonly int Blend = Animator.StringToHash("Blend");
+
     public JumpingStateFSM(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
     {
         character = _character;
@@ -27,7 +29,7 @@ public class JumpingStateFSM : StateFSM
         playerSpeed = character.playerSpeed;
         gravityVelocity.y = 0.0f;
         
-        character.animator.SetFloat("speed",0);
+        character.animator.SetFloat(Blend,0);
         character.animator.SetTrigger("jump");
         Jump();
     }

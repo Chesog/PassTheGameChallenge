@@ -22,8 +22,8 @@ public class AttackStateFSM : StateFSM
         attack = false;
         character.animator.applyRootMotion = true;
         timePassed = 0f;
-        character.animator.SetTrigger("attack");
-        character.animator.SetFloat("speed", 0f);
+        character.animator.SetTrigger("Attack");
+        character.animator.SetFloat("Blend", 0f);
         Attack();
     }
  
@@ -52,7 +52,12 @@ public class AttackStateFSM : StateFSM
         if (timePassed >= clipLength / clipSpeed)
         {
             stateMachine.ChangeState(character.standing);
-            character.animator.SetTrigger("move");
+            character.animator.SetTrigger("normal");
+        }
+        if (attackAction.triggered)
+        {
+            stateMachine.ChangeState(character.attacking);
+            Attack();
         }
  
     }

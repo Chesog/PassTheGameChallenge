@@ -31,7 +31,7 @@ public class SprintJumpStateFSM : StateFSM
 
         if (timePassed > jumpTime)
         {
-            character.animator.SetTrigger("move");
+           // character.animator.SetTrigger("move");
             stateMachine.ChangeState(character.sprinting);
         }
 

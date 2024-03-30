@@ -16,6 +16,7 @@ public class StandingStateFSM : StateFSM
 
     private Vector3 currentVelocity;
     private Vector3 cVelocity;
+    private static readonly int Blend = Animator.StringToHash("Blend");
 
     public StandingStateFSM(Character _character, StateMachine _stateMachine) : base(_character, _stateMachine)
     {
@@ -70,7 +71,7 @@ public class StandingStateFSM : StateFSM
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        character.animator.SetFloat("speed", input.magnitude, character.speedDampTime, Time.deltaTime);
+        character.animator.SetFloat(Blend, input.magnitude, character.speedDampTime, Time.deltaTime);
 
         if (sprint)
             stateMachine.ChangeState(character.sprinting);
