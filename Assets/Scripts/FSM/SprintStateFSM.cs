@@ -82,7 +82,7 @@ public class SprintStateFSM : StateFSM
 
         currentVelocity = Vector3.SmoothDamp(currentVelocity,velocity *2, ref cVelocity,character.velocityDampTime);
 
-        character.controller.Move(currentVelocity * Time.deltaTime * playerSpeed + gravityVelocity * Time.deltaTime);
+        character.controller.Move(currentVelocity * (Time.deltaTime * playerSpeed) + gravityVelocity * Time.deltaTime);
         
         if (velocity.magnitude > 0)
             character.transform.rotation = Quaternion.Slerp(character.transform.rotation,Quaternion.LookRotation(velocity),character.rotationDampTime);

@@ -66,7 +66,7 @@ public class JumpingStateFSM : StateFSM
             airVelocity.y = 0.0f;
 
            character.controller.Move(gravityVelocity * Time.deltaTime +
-                                     (airVelocity * character.airControl + velocity * (1 - character.airControl)) * playerSpeed * Time.deltaTime);
+                                     (airVelocity * character.airControl + velocity * (1 - character.airControl)) * (playerSpeed * Time.deltaTime));
         }
 
         gravityVelocity.y += gravityValue * Time.deltaTime;

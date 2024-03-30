@@ -98,7 +98,7 @@ public class StandingStateFSM : StateFSM
             gravityVelocity.y = 0.0f;
 
         currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref cVelocity, character.velocityDampTime);
-        character.controller.Move(currentVelocity * Time.deltaTime * playerSpeed + gravityVelocity * Time.deltaTime);
+        character.controller.Move(currentVelocity * (Time.deltaTime * playerSpeed) + gravityVelocity );
 
         if (velocity.sqrMagnitude > 0)
             character.transform.rotation = Quaternion.Slerp(character.transform.rotation,
