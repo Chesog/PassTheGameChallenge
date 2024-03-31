@@ -30,7 +30,7 @@ public class StandingStateFSM : StateFSM
     public override void Enter()
     {
         base.Enter();
-   
+
         // character.animator.runtimeAnimatorController = animator;
         character.animator.SetTrigger("normal");
         jump = false;
@@ -77,7 +77,8 @@ public class StandingStateFSM : StateFSM
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        character.animator.SetFloat(Blend, input.magnitude, character.speedDampTime, Time.deltaTime);
+        float inputMagnitude = input.magnitude < 0?input.magnitude + 0.5f :input.magnitude - 0.5f;
+        character.animator.SetFloat(Blend, inputMagnitude, character.speedDampTime, Time.deltaTime);
 
         if (sprint)
             stateMachine.ChangeState(character.sprinting);
@@ -87,7 +88,6 @@ public class StandingStateFSM : StateFSM
             stateMachine.ChangeState(character.crouching);
         if (attack)
             stateMachine.ChangeState(character.attacking);
-       
     }
 
     public override void PhysicsUpdate()
@@ -102,17 +102,14 @@ public class StandingStateFSM : StateFSM
 
         currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref cVelocity, character.velocityDampTime);
         character.controller.Move(currentVelocity * (Time.deltaTime * playerSpeed) + gravityVelocity);
-        
-        
-         if (velocity.sqrMagnitude > 0)
-         {
-             Debug.Log("Player rotation:" + character.transform.rotation);
-             Quaternion transformRotation = Quaternion.Slerp(character.transform.rotation,
-                 Quaternion.LookRotation(velocity), character.rotationDampTime);
-             character.transform.rotation = transformRotation;
-             Debug.Log("New rotation:" + transformRotation);
-             Debug.Log("New rotation2:" +  character.transform.rotation );
-         }
+
+
+        if (velocity.sqrMagnitude > 0)
+        {
+            Quaternion transformRotation = Quaternion.Slerp(character.transform.rotation,
+                Quaternion.LookRotation(velocity), character.rotationDampTime);
+            character.transform.rotation = transformRotation;
+        }
     }
 
     public override void Exit()

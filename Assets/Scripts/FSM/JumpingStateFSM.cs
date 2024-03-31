@@ -30,7 +30,7 @@ public class JumpingStateFSM : StateFSM
         gravityVelocity.y = 0.0f;
         
         character.animator.SetFloat(Blend,0);
-        character.animator.SetTrigger("jump");
+        character.animator.SetTrigger("Jump");
         Jump();
     }
 
@@ -58,7 +58,7 @@ public class JumpingStateFSM : StateFSM
         {
             velocity = character.playerVelocity;
             airVelocity = new Vector3(input.x, 0.0f, input.y);
-            
+            character.animator.SetFloat(Blend,0.5f);
             velocity = velocity.x * character.cameraTransform.right.normalized +
                        velocity.z * character.cameraTransform.forward.normalized;
             velocity.y = 0.0f;

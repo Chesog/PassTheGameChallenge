@@ -16,7 +16,8 @@ public class LandingStateFSM : StateFSM
     {
         base.Enter();
         timePassed = 0.0f;
-        character.animator.SetTrigger("land");
+        character.animator.SetTrigger("Jump");
+        character.animator.SetFloat("Blend",1);
         landingTime = 0.5f;
     }
 

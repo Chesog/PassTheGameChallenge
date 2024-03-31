@@ -62,7 +62,10 @@ public class SprintStateFSM : StateFSM
         base.LogicUpdate();
         
         if (sprint)
-            character.animator.SetFloat(Blend,input.magnitude + 0.5f,character.speedDampTime,Time.deltaTime);
+        {
+            float inputMagnitude = input.magnitude >0?input.magnitude + 0.5f :input.magnitude - 0.5f;
+            character.animator.SetFloat(Blend,inputMagnitude ,character.speedDampTime,Time.deltaTime);
+        }
         else
             stateMachine.ChangeState(character.standing);
         
