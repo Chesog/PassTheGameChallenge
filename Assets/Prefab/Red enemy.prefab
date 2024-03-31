@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1695926056847859921}
   - component: {fileID: 4280110832620141143}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Red enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,6 +133,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c68653398c390d84f872841c9f1f468c, type: 2}
+    - target: {fileID: 137218116663036162, guid: 928a1377c1cd4515b208fef3a396b8ea, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ec5724b3bd25e5946ac3d789de36f5e5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
