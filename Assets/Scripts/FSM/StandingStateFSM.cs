@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class StandingStateFSM : StateFSM
@@ -14,6 +15,7 @@ public class StandingStateFSM : StateFSM
     private bool drawWeapon;
     private bool attack;
 
+    private AnimatorController animator;
     private Vector3 currentVelocity;
     private Vector3 cVelocity;
     private static readonly int Blend = Animator.StringToHash("Blend");
@@ -22,11 +24,15 @@ public class StandingStateFSM : StateFSM
     {
         character = _character;
         stateMachine = _stateMachine;
+        animator = character.animatorController;
     }
 
     public override void Enter()
     {
         base.Enter();
+   
+        // character.animator.runtimeAnimatorController = animator;
+        character.animator.SetTrigger("normal");
         jump = false;
         crouch = false;
         sprint = false;
@@ -81,11 +87,7 @@ public class StandingStateFSM : StateFSM
             stateMachine.ChangeState(character.crouching);
         if (attack)
             stateMachine.ChangeState(character.attacking);
-        if (drawWeapon)
-        {
-            stateMachine.ChangeState(character.combatting);
-            character.animator.SetTrigger("drawWeapon");
-        }
+       
     }
 
     public override void PhysicsUpdate()
@@ -99,11 +101,18 @@ public class StandingStateFSM : StateFSM
             gravityVelocity.y = 0.0f;
 
         currentVelocity = Vector3.SmoothDamp(currentVelocity, velocity, ref cVelocity, character.velocityDampTime);
-        character.controller.Move(currentVelocity * (Time.deltaTime * playerSpeed) + gravityVelocity );
-
-        if (velocity.sqrMagnitude > 0)
-            character.transform.rotation = Quaternion.Slerp(character.transform.rotation,
-                Quaternion.LookRotation(velocity), character.rotationDampTime);
+        character.controller.Move(currentVelocity * (Time.deltaTime * playerSpeed) + gravityVelocity);
+        
+        
+         if (velocity.sqrMagnitude > 0)
+         {
+             Debug.Log("Player rotation:" + character.transform.rotation);
+             Quaternion transformRotation = Quaternion.Slerp(character.transform.rotation,
+                 Quaternion.LookRotation(velocity), character.rotationDampTime);
+             character.transform.rotation = transformRotation;
+             Debug.Log("New rotation:" + transformRotation);
+             Debug.Log("New rotation2:" +  character.transform.rotation );
+         }
     }
 
     public override void Exit()

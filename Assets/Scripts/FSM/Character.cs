@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -39,15 +40,17 @@ public class Character : MonoBehaviour
     [HideInInspector] public float gravityValue = -9.81f;
     [HideInInspector] public float normalCollderHeight;
     [HideInInspector] public CharacterController controller;
+    [HideInInspector] public PlayerCombatController combatController;
     [HideInInspector] public PlayerInput playerInput;
     [FormerlySerializedAs("CameraTransform")] [HideInInspector] public Transform cameraTransform;
-    [HideInInspector] public Animator animator;
+    public Animator animator;
     [HideInInspector] public Vector3 playerVelocity;
+    public AnimatorController animatorController;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        combatController = GetComponent<PlayerCombatController>();
         playerInput = GetComponent<PlayerInput>();
         cameraTransform = Camera.main.transform;
         

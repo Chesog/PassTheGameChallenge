@@ -18,11 +18,11 @@ public class AttackStateFSM : StateFSM
     public override void Enter()
     {
         base.Enter();
- 
-        attack = false;
         character.animator.applyRootMotion = true;
+        attack = false;
         timePassed = 0f;
-        character.animator.SetTrigger("Attack");
+        character.combatController.Attack(character.animator);
+        character.animator.Play("Attack",0,0);
         character.animator.SetFloat("Blend", 0f);
         Attack();
     }
@@ -40,25 +40,18 @@ public class AttackStateFSM : StateFSM
     {
         base.LogicUpdate();
  
-        timePassed += Time.deltaTime;
-        clipLength = character.animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
-        clipSpeed = character.animator.GetCurrentAnimatorStateInfo(0).speed;
- 
-        if (timePassed >= clipLength / clipSpeed && attack)
+       
+        
+        if (attack)
         {
             stateMachine.ChangeState(character.attacking);
-            Attack();
         }
-        if (timePassed >= clipLength / clipSpeed)
+        else if (character.combatController.ExitAttack(character.animator))
         {
             stateMachine.ChangeState(character.standing);
-            character.animator.SetTrigger("normal");
+           
         }
-        if (attackAction.triggered)
-        {
-            stateMachine.ChangeState(character.attacking);
-            Attack();
-        }
+     
  
     }
 

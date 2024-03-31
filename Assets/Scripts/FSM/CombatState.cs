@@ -58,7 +58,7 @@ public class CombatState : StateFSM
     {
         base.LogicUpdate();
  
-        character.animator.SetFloat("speed", input.magnitude, character.speedDampTime, Time.deltaTime);
+        character.animator.SetFloat("Blend", input.magnitude, character.speedDampTime, Time.deltaTime);
  
         if (sheathWeapon)
         {
