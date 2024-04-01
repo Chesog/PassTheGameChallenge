@@ -18,12 +18,12 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Win")]
     private void Win()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Win");
     }
     [ContextMenu("lose")]
     private void Lose()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Lose");
     }
 
     private void OnTriggerEnter(Collider other)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private Button _button;
-    [SerializeField] private int newScene;
+    [SerializeField] private string newScene;
     [SerializeField] private bool IsQuitButton;
 
     private void OnEnable()
