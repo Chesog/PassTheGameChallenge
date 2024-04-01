@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6858577411977840202
+--- !u!114 &-7202139973867037702
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,34 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a34fa72bd4185749832024e9c8010bf, type: 3}
-  m_Name: ScreenSpaceReflections
+  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
+  m_Name: MotionBlur
   m_EditorClassIdentifier: 
   active: 1
   enabled:
     overrideState: 1
     value: 1
-  preset:
+  shutterAngle:
     overrideState: 0
-    value: 2
-  maximumIterationCount:
+    value: 270
+  sampleCount:
     overrideState: 0
-    value: 16
-  resolution:
-    overrideState: 0
-    value: 0
-  thickness:
-    overrideState: 0
-    value: 8
-  maximumMarchDistance:
-    overrideState: 0
-    value: 100
-  distanceFade:
-    overrideState: 0
-    value: 0.5
-  vignette:
-    overrideState: 0
-    value: 0.5
+    value: 10
 --- !u!114 &-4223707820297994433
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -55,7 +40,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 3
+    value: 5
   threshold:
     overrideState: 1
     value: 1
@@ -144,8 +129,7 @@ MonoBehaviour:
   - {fileID: -4223707820297994433}
   - {fileID: 1235912872433855226}
   - {fileID: -4048784463113874139}
-  - {fileID: 8827418556786054928}
-  - {fileID: -6858577411977840202}
+  - {fileID: -7202139973867037702}
 --- !u!114 &1235912872433855226
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -172,25 +156,3 @@ MonoBehaviour:
   fastMode:
     overrideState: 0
     value: 0
---- !u!114 &8827418556786054928
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
-  m_Name: MotionBlur
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  shutterAngle:
-    overrideState: 1
-    value: 360
-  sampleCount:
-    overrideState: 1
-    value: 11
