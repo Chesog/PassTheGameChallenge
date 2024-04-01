@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField] private Character _player;
     [SerializeField] private float _cameraSpeed;
-    [SerializeField] private Vector2 _cameraOffset;
+    [SerializeField] private Vector3 _cameraOffset;
     
     private void FixedUpdate()
     {
@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
         Vector3 newPos = _player.transform.position;
         newPos.z += _cameraOffset.x;
         newPos.y += _cameraOffset.y;
+        newPos.x += _cameraOffset.z;
         transform.position = Vector3.Lerp(originalPos, newPos,_cameraSpeed * Time.deltaTime);
     }
 }
