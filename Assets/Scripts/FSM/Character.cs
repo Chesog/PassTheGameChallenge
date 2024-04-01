@@ -8,10 +8,11 @@ using UnityEngine.Serialization;
 public class Character : MonoBehaviour
 {
     public UnityEvent PlayerDeath;
+    public UnityEvent PlayerReceiveDamage;
 
     [Header("Controls")]
     public float playerHealth = 50.0f; // 5.0f
-    private float currentHeaalth { get; set; }
+    public float currentHeaalth { get; set; }
 
     public float playerSpeed = 5.0f; // 5.0f
     public float crouchSpeed = 2.0f; // 2.0f
@@ -97,6 +98,7 @@ public class Character : MonoBehaviour
     public void ReceiveDamage(float damage)
     {
         currentHeaalth -= damage;
+        PlayerReceiveDamage.Invoke();
         if (currentHeaalth <=  0)
         {
             PlayerDeath.Invoke();
