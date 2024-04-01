@@ -64,6 +64,7 @@ namespace Enemy
                 animator.SetFloat("Blend",0);       
                 Debug.Log("Attacking " + target.name + " for " + attackDamage + " damage.");
                 animator.SetTrigger("Attack");
+                target.GetComponent<Character>().ReceiveDamage(attackDamage);
                 lastAttackTime = Time.time;
                 StartCoroutine(AttackCooldownCoroutine());
             }
