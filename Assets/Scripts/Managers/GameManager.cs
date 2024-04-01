@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Player.PlayerDeath.AddListener(Lose);
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void OnDestroy()
@@ -19,11 +22,13 @@ public class GameManager : MonoBehaviour
     private void Win()
     {
         SceneManager.LoadScene("Win");
+        Cursor.lockState = CursorLockMode.Confined;
     }
     [ContextMenu("lose")]
     private void Lose()
     {
         SceneManager.LoadScene("Lose");
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void OnTriggerEnter(Collider other)
