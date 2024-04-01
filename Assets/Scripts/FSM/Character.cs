@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Character : MonoBehaviour
 {
@@ -93,6 +94,9 @@ public class Character : MonoBehaviour
     private void FixedUpdate()
     {
         movementSM.currentState?.PhysicsUpdate();
+
+        float moveMouseX = Input.GetAxis("Mouse X");
+        transform.Rotate(0f, moveMouseX, 0f);
     }
 
     public void ReceiveDamage(float damage)
